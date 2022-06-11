@@ -11,6 +11,8 @@ class EventController extends Controller
 {
     public function index() {
 
+        $actual_date = date('d/m/Y');
+
         $search = request('search');
 
         if($search) {
@@ -25,7 +27,7 @@ class EventController extends Controller
 
         }
         
-        return view('Welcome', ['events' => $events, 'search' => $search]);
+        return view('Welcome', ['events' => $events, 'search' => $search, 'actual_date' => $actual_date]);
     }
 
     public function create() {
@@ -172,10 +174,10 @@ class EventController extends Controller
     public function participants($id) {
         $user = auth()->user();
 
-        
-
         $event = Event::findOrFail($id);
+
         $events = $event->users;
+
         $event_user = $event->users();
 
         if($user->id != $event->user_id) {
