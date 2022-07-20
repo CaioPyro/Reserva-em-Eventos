@@ -27,7 +27,7 @@ class EventController extends Controller
 
         }
         
-        return view('Welcome', ['events' => $events, 'search' => $search, 'actual_date' => $actual_date]);
+        return view('welcome', ['events' => $events, 'search' => $search, 'actual_date' => $actual_date]);
     }
 
     public function create() {
