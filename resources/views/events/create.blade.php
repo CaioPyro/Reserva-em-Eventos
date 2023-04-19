@@ -33,6 +33,17 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="title">Categoria do Evento:</label><br>
+            <select name="category" id="category" class="form-control">
+                <option value="0">Acadêmico</option>
+                <option value="1">Corporativo</option>
+                <option value="2">Cultural</option>
+                <option value="3">Esportivo</option>
+                <option value="4">Religioso</option>
+                <option value="5">Social</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="title">Descrição:</label>
             <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento"></textarea>
         </div>
@@ -58,7 +69,7 @@
             <input type="checkbox" name="items[]" value="Open Food"> Open Food
         </div>
         <input type="submit" class="btn btn-primary" value="Criar Evento">
-        </form>
+    </form>
 </div>    
 
 @endsection

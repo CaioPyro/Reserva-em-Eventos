@@ -35,6 +35,17 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="title">Categoria do Evento:</label><br>
+            <select name="category" id="category" class="form-control">
+                <option value="0" {{ $event->category == 0 ? "selected='selected" : "" }}>Acadêmico</option>
+                <option value="1" {{ $event->category == 1 ? "selected='selected" : "" }}>Corporativo</option>
+                <option value="2" {{ $event->category == 2 ? "selected='selected" : "" }}>Cultural</option>
+                <option value="3" {{ $event->category == 3 ? "selected='selected" : "" }}>Esportivo</option>
+                <option value="4" {{ $event->category == 4 ? "selected='selected" : "" }}>Religioso</option>
+                <option value="5" {{ $event->category == 5 ? "selected='selected" : "" }}>Social</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="title">Descrição:</label>
             <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento">{{ $event->description }}</textarea>
         </div>

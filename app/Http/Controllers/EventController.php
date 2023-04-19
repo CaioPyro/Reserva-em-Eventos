@@ -11,9 +11,16 @@ class EventController extends Controller
 {
     public function index() {
 
-        $actual_date = date('d/m/Y');
+        $actual_date = date('Y-m-d');
 
         $search = request('search');
+
+        $events_academicos = [];     
+        $events_corporativos = [];   
+        $events_culturais = [];
+        $events_esportivos = [];
+        $events_religiosos = [];
+        $events_sociais  = [];
 
         if($search) {
             
@@ -23,11 +30,30 @@ class EventController extends Controller
 
         }else {
             
-            $events = Event::all();
+            $events = Event::where('date', '>=', $actual_date)->orderBy('date')->take(4)->get();
+            $events_academicos = Event::where('date', '>=', $actual_date)->where('category', '=', 0)->orderBy('date')->get();
+            $events_corporativos = Event::where('date', '>=', $actual_date)->where('category', '=', 1)->orderBy('date')->get();
+            $events_culturais = Event::where('date', '>=', $actual_date)->where('category', '=', 2)->orderBy('date')->get();
+            $events_esportivos = Event::where('date', '>=', $actual_date)->where('category', '=', 3)->orderBy('date')->get();
+            $events_religiosos = Event::where('date', '>=', $actual_date)->where('category', '=', 4)->orderBy('date')->get();
+            $events_sociais = Event::where('date', '>=', $actual_date)->where('category', '=', 5)->orderBy('date')->get();                
 
         }
         
+<<<<<<< HEAD
         return view('welcome', ['events' => $events, 'search' => $search, 'actual_date' => $actual_date]);
+=======
+        return view('Welcome', 
+            ['events' => $events, 
+            'search' => $search, 
+            'events_academicos' => $events_academicos,
+            'events_corporativos' => $events_corporativos,
+            'events_culturais' => $events_culturais,
+            'events_esportivos' => $events_esportivos,
+            'events_religiosos' => $events_religiosos,
+            'events_sociais' => $events_sociais,
+            'actual_date' => $actual_date]);
+>>>>>>> 66f837d (Adição do recurso de categorias)
     }
 
     public function create() {
@@ -41,6 +67,7 @@ class EventController extends Controller
         $event->date = $request->date;
         $event->city = $request->city;
         $event->private = $request->private;
+        $event->category = $request->category;
         $event->description = $request->description;
         $event->items = $request->items;
 
